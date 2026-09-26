@@ -10,11 +10,18 @@ const Statistic = (props) => {
 
   const {good, neutral, bad} = props;
 
+  const total = good + neutral + bad;
+  const average = total / 3;
+  const positive = (good / total)*100;
+
   return (
     <>
       <p>Good: {good}</p>
       <p>Neutral: {neutral}</p>
       <p>Bad: {bad}</p>
+      <p>All: {total}</p>
+      <p>Average: {average}</p>
+      <p>Positive : {total == 0 ? 'None': positive +'%'}</p>
     </>
   )
 }
