@@ -7,7 +7,6 @@ const Button = (props) => {
 }
 
 const Statistic = (props) => {
-
   const {good, neutral, bad} = props;
 
   const total = good + neutral + bad;
