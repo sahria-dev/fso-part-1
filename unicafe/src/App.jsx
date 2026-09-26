@@ -13,6 +13,12 @@ const Statistic = (props) => {
   const average = total / 3;
   const positive = (good / total)*100;
 
+  if (total == 0) {
+    return (
+      <p>No feedback given</p>
+    )
+  }
+
   return (
     <>
       <p>Good: {good}</p>
@@ -50,6 +56,7 @@ const App = () => {
       <Button handleCLick={incrementNeutral} text={"Neutral"}/>
       <Button handleCLick={incrementBad} text={"Bad..."}/>
 
+      <h1>Statistics</h1>
       <Statistic good={good} neutral={neutral} bad={bad}/>
     </div>
   )
