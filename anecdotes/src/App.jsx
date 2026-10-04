@@ -10,6 +10,32 @@ const NextButton = (props) => {
   )
 }
 
+const VoteButton = (props) => {
+  return (
+    <button onClick={props.handleVote}>Vote</button>
+  )
+}
+
+const MostVoted = (props) => {
+  const {anecdotes, votes} = props
+  
+  const indexOfMostVoted = votes.reduce((maxIndex, current, i) => {
+
+    // if (current > votes[maxIndex]) {
+    //   return i
+    // }
+    // return maxIndex
+    return current > votes[maxIndex] ? i : maxIndex
+
+  }, 0)
+
+
+  return (
+    <p>{anecdotes[indexOfMostVoted]}</p>
+  )
+
+}
+
 const App = () => {
   const anecdotes = [
     'If it hurts, do it more often.',
@@ -24,16 +50,34 @@ const App = () => {
    
   const [selected, setSelected] = useState(0)
 
+  const [votes, setVote] = useState(Array(anecdotes.length).fill(0))
+
+  console.log(votes)
+
   const handleNextAnecdote = () => {
     const index = getRandomInt(anecdotes.length)
-    console.log(index)
     setSelected(index)
+  }
+
+  const handleVote = () => {
+    const copy = [...votes]
+
+    copy[selected] += 1;
+
+    console.log(copy);
+    setVote(copy)
   }
 
   return (
     <div>
+      <h1>Anecdote of the day</h1>
       <p>{anecdotes[selected]}</p>
+      <p>Has {votes[selected]} votes.</p>
       <NextButton handleNextAnecdote={handleNextAnecdote}/>
+      <VoteButton handleVote={handleVote}/>
+
+      <h1>Anecdote with most votes</h1>
+      <MostVoted anecdotes={anecdotes} votes={votes}/>
     </div>
   )
 }
