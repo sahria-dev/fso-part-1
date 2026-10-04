@@ -52,7 +52,6 @@ const App = () => {
 
   const [votes, setVote] = useState(Array(anecdotes.length).fill(0))
 
-  console.log(votes)
 
   const handleNextAnecdote = () => {
     const index = getRandomInt(anecdotes.length)
@@ -64,7 +63,6 @@ const App = () => {
 
     copy[selected] += 1;
 
-    console.log(copy);
     setVote(copy)
   }
 
